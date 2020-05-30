@@ -12,7 +12,6 @@ It displays the warnings in a per-file, merged output.
 """
 
 [flake8]
-; flake8でテストしない物
 exclude =
     migrations,
     __pycache__,
