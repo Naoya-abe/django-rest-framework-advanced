@@ -1,0 +1,18 @@
+# 使用するプログラム言語
+language: python
+
+# pythonのバージョン
+python:
+  - '3.7'
+
+# 使用するサービスを記述
+# Dockerfile, docker-composeファイルが使用できるようになる
+servises:
+  - docker
+
+# CIのスクリプトを実行する前の処理
+before_script: pip install docker-compose
+
+# CIで実行したい内容を記述
+script:
+  - docker-compose run app sh -c 'python manage.py test && flake8'
