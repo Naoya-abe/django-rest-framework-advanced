@@ -20,4 +20,26 @@ class ModelTest(TestCase):
         self.assertTrue(user.check_password(password))
 
         # 現在はデフォルトのUsermodelを使用しているため、以下のエラーが表示される
-        # TypeError: create_user() missing 1 required positional argument: 'username'
+        # create_user() missing 1 required positional argument: 'username'
+
+    def test_new_user_email_normalized(self):
+        """Test the email for a new user is normalized"""
+        email = 'test@PIGMAIL.COM'
+        user = get_user_model().objects.create_user(email, 'test123')
+
+        self.assertEqual(user.email, email.lower())
+
+    def test_new_user_invalid_email(self):
+        """Test creating user with no email raises error"""
+        with self.assertRaises(ValueError):
+            get_user_model().objects.create_user(None, 'test123')
+
+    def test_create_new_superuser(self):
+        """Test creating a new superuser"""
+        user = get_user_model().objects.create_superuser(
+            'test@pigmail.com',
+            'test123'
+        )
+
+        self.assertTrue(user.is_superuser)
+        self.assertTrue(user.is_staff)
