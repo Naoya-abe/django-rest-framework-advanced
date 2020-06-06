@@ -15,6 +15,7 @@ class ModelTest(TestCase):
             password=password
         )
 
+        # assertEqual(a,b): a == bになっているか確認
         self.assertEqual(user.email, email)
         # check_password: passwordがあっているかの確認
         self.assertTrue(user.check_password(password))
