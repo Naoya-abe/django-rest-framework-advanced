@@ -13,9 +13,9 @@ services:
     # Djangoプロジェクト内で用いるDBの環境変数を.envファイルから読み込む
     environment:
       - DB_HOST=db
-      - DB_NAME=${POSTGRESS_DB}
-      - DB_USER=${POSTGRESS_USER}
-      - DB_PASS=${POSTGRESS_PASSWORD}
+      - DB_NAME=${POSTGRES_DB}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASS=${POSTGRES_PASSWORD}
     # dbが立ち上がってから、appが立ち上がるようにする
     depends_on:
       - db
@@ -25,6 +25,6 @@ services:
     image: postgres:10-alpine
     # .envファイルに記述した環境変数を用いてPosgreSQLの初期設定を行う
     environment:
-      - POSTGRESS_DB
-      - POSTGRESS_USER
-      - POSTGRESS_PASSWORD
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
