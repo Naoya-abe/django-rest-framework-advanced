@@ -8,8 +8,11 @@ services:
       - '8080:8080'
     volumes:
       - ./app:/app
+    # DBの接続を確認, アプリに必要なテーブルを作成, アプリの起動
     command: >
-      sh -c 'python manage.py runserver 0:8080'
+      sh -c 'python manage.py wait_for_db && 
+             python manage.py migrate &&
+             python manage.py runserver 0:8080'
     # Djangoプロジェクト内で用いるDBの環境変数を.envファイルから読み込む
     environment:
       - DB_HOST=db
