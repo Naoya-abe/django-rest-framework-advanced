@@ -21,7 +21,7 @@ class CommandsTestCase(TestCase):
 
     # DB接続に失敗したと仮定した際のtime.sleepをmockで置き換え省略する
     @patch('time.sleep', return_value=None)
-    def test_wait_for_db(self, ts): #引数にデコレータで作成したmockを渡すことを忘れない
+    def test_wait_for_db(self, ts):  # 引数にデコレータで作成したmockを渡すことを忘れない
         """Test waiting for db"""
 
         with patch('django.db.utils.ConnectionHandler.__getitem__') as gi:
