@@ -27,7 +27,7 @@ class AuthTokenSerializer(serializers.Serializer):
 
     def validate(self, attrs):  # デフォルトだとusernameで認証するところをemailで認証したい
         """Validate and authenticate the user"""
-        # attrs: serializerに渡された値が辞書形式になっている
+        # attrs: serializerに渡された値(辞書形式)
         email = attrs.get('email')
         password = attrs.get('password')
 
